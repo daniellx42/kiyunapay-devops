@@ -1,0 +1,41 @@
+module.exports = {
+	apps: [
+		{
+			name: 'Bot Discord',
+			cmd: 'kiyunapay-discord-bot/dist/main.js',
+			autorestart: true,
+			watch: true,
+			max_memory_restart: '1G',
+			max_restarts: 5,
+			env: {
+				TOKEN: '',
+				CLIENT_ID: '',
+				DB_PT: 'production',
+				DATABASE_URL: "",
+				DIRECT_URL: "",
+			},
+			log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+			error_file: 'logs-bots/error-discord-bots.log',
+			out_file: 'logs-bots/out-discord-bots.log',
+			max_size: '500M',
+		},
+		{
+			name: 'Bot Telegram',
+			cmd: 'kiyunapay-telegram-bot/src/main.py',
+			interpreter: 'python3',
+			autorestart: true,
+			watch: true,
+			max_memory_restart: '1G',
+			max_restarts: 5,
+			env: {
+				DEVELOPMENT_ENVIRONMENT: "production",
+				TOKEN: '',
+				BOT_NAME: "",
+				DATABASE_URL: "",
+			},
+			log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+			error_file: 'logs-bots/error-telegram-bots.log',
+			out_file: 'logs-bots/out-telegram-bots.log',
+			max_size: '500M',
+		}],
+};
