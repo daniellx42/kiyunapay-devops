@@ -1,0 +1,26 @@
+services:
+  kiyunapay_bot_telegram_service:
+    build: ./kiyunapay-telegram-bot
+    container_name: kiyunapay_bot_telegram_service
+    restart: always
+    volumes:
+      - ./kiyunapay-telegram-bot:/app
+    command: [ "python", "src/main.py" ]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  kiyunapay_bot_discord_service:
+    build: ./kiyunapay-discord-bot
+    container_name: kiyunapay_bot_discord_service
+    restart: always
+    volumes:
+      - ./kiyunapay-discord-bot:/app
+    command: [ "npm", "run", "start" ]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
